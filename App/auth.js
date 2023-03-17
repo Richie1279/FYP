@@ -1,6 +1,7 @@
-// import { initializeApp } from "firebase/app";
-//import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
+// this does not work
 
 // Get form elements
 const form = document.querySelector('form');
@@ -12,15 +13,15 @@ const confirmPassword = document.querySelector('#confirm-password');
 
 
 // Initialize Firebase
-const firebaseConfig = {
-        apiKey: "AIzaSyDVrKPLkFsStEN3UjU1W-GJkPkXQbN-r9Y",
-        authDomain: "fyp23-63f33.firebaseapp.com",
-        projectId: "fyp23-63f33",
-        storageBucket: "fyp23-63f33.appspot.com",
-        messagingSenderId: "469415965908",
-        appId: "1:469415965908:web:f3470aacb3709461543741",
-        measurementId: "G-J66ZDNMR8X"
-      };
+// const firebaseConfig = {
+//         apiKey: "AIzaSyDVrKPLkFsStEN3UjU1W-GJkPkXQbN-r9Y",
+//         authDomain: "fyp23-63f33.firebaseapp.com",
+//         projectId: "fyp23-63f33",
+//         storageBucket: "fyp23-63f33.appspot.com",
+//         messagingSenderId: "469415965908",
+//         appId: "1:469415965908:web:f3470aacb3709461543741",
+//         measurementId: "G-J66ZDNMR8X"
+//       };
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 

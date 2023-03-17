@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Page</title>
+  <!-- Firebase JavaScript SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
+
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDVrKPLkFsStEN3UjU1W-GJkPkXQbN-r9Y",
+      authDomain: "fyp23-63f33.firebaseapp.com",
+      projectId: "fyp23-63f33",
+      storageBucket: "fyp23-63f33.appspot.com",
+      messagingSenderId: "469415965908",
+      appId: "1:469415965908:web:f3470aacb3709461543741",
+      measurementId: "G-J66ZDNMR8X"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Get a reference to the Firebase Authentication service
+    var auth = firebase.auth();
+
+    // Get a reference to the Firebase Firestore service
+    var db = firebase.firestore();
+
+    // Handle registration form submission
+    function register() {
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(function(userCredential) {
+          // Add user details to Firestore database
+          db.collection("users").doc(userCredential.user.uid).set({
+            email: email
+          })
+          .then(function() {
+            // Redirect to dashboard
+            window.location.href = "dashboard.html";
+          })
+          .catch(function(error) {
+            console.error("Error adding document: ", error);
+          });
+        })
+        .catch(function(error) {
+          console.error("Error creating user: ", error);
+        });
+    }
+  </script>
+</head>
+<body>
+  <h1>Registration Page</h1>
+
+  <form onsubmit="register(); return false;">
+    <label>Email:</label><br>
+    <input type="email" id="email" required><br>
+
+    <label>Password:</label><br>
+    <input type="password" id="password" required><br>
+
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>
+
+  
+  
