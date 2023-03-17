@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration Page</title>
+	<link rel="stylesheet" href="registrationStyle.css">
+</head>
+<body>
+    <header>
+		<h1>smartHaul</h1>
+		<img src="van1.jpg" >
+	</header>
+	<main>
+		<h1>Register for smartHaul</h1>
+		<form>
+			<label for="username">Username:</label>
+			<input type="text" id="username" name="username" required>
+
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email" required>
+
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password" minlength="8" required>
+
+			<label for="confirm-password">Confirm Password:</label>
+			<input type="password" id="confirm-password" name="confirm-password" minlength="8" required>
+
+			<button type="submit">Register</button>
+		</form>
+		<p>Already have an account? <a href="#">Log in here</a>.</p>
+	</main>
+	<script src="auth.js"></script>
+</body>
+</html>
