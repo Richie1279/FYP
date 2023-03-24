@@ -1,19 +1,21 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Registration Page</title>
+	<title>Register</title>
 	<link rel="stylesheet" href="registrationStyle.css">
+
 </head>
 <body>
-    <header>
+	<header>
 		<h1>smartHaul</h1>
 		<img src="van1.jpg" >
 	</header>
-	<main>
-		<h1>Register for smartHaul</h1>
-		<form>
-			firebase.initializeApp(firebaseConfig);
+	
 
+	<main>
+		<h1> Registration </h1>
+		<form>
 			<label for="username">Username:</label>
 			<input type="text" id="username" name="username" required>
 
@@ -26,13 +28,22 @@
 			<label for="confirm-password">Confirm Password:</label>
 			<input type="password" id="confirm-password" name="confirm-password" minlength="8" required>
 
-			<button type="submit">Register</button>
-		</form>
-		<p>Already have an account? <a href="#">Log in here</a>.</p>
-	</main>
-	<!-- <script src="auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script> -->
+			<label for="Register"></label>
+			<button type="submit" id="submitBtn">Register</button>
 
+		</form>
+
+		
+
+	</main>
+
+	<footer>
+		<p>&copy; 2023 smartHaul Ltd. All rights reserved.</p>
+	</footer>
+
+	<script src="Homepage_script.js"></script>
 </body>
 </html>
+
+
+
