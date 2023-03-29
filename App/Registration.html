@@ -7,6 +7,33 @@
 
 </head>
 <body>
+	<script type="module">
+		// Import the functions you need from the SDKs you need
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+		import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
+		// TODO: Add SDKs for Firebase products that you want to use
+		// https://firebase.google.com/docs/web/setup#available-libraries
+	  
+		// Your web app's Firebase configuration
+		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		const firebaseConfig = {
+		  apiKey: "AIzaSyDWBWCxhPblj61V0EcWl-hvQEGvG3f5UJM",
+		  authDomain: "smarthaul-7c251.firebaseapp.com",
+		  databaseURL: "https://smarthaul-7c251-default-rtdb.europe-west1.firebasedatabase.app",
+		  projectId: "smarthaul-7c251",
+		  storageBucket: "smarthaul-7c251.appspot.com",
+		  messagingSenderId: "489108636040",
+		  appId: "1:489108636040:web:d69d8fa541258c5cf7ba3d",
+		  measurementId: "G-SJYMCCZ2RN"
+		};
+	  
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+		const analytics = getAnalytics(app);
+
+	  </script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+
 	<header>
 		<h1>smartHaul</h1>
 		<img src="van1.jpg" >
@@ -14,24 +41,23 @@
 	
 
 	<main>
-		<h1> Registration </h1>
-		<form>
-			<label for="username">Username:</label>
-			<input type="text" id="username" name="username" required>
 
-			<label for="email">Email:</label>
-			<input type="email" id="email" name="email" required>
-
-			<label for="password">Password:</label>
-			<input type="password" id="password" name="password" minlength="8" required>
-
-			<label for="confirm-password">Confirm Password:</label>
-			<input type="password" id="confirm-password" name="confirm-password" minlength="8" required>
-
-			<label for="Register"></label>
-			<button type="submit" id="submitBtn">Register</button>
-
+		<h1>Register</h1>
+		<form id="registerForm">
+		  <label for="registerEmail">Email:</label>
+		  <input type="email" id="registerEmail" required>
+		  <br>
+		  <label for="registerPassword">Password:</label>
+		  <input type="password" id="registerPassword" required>
+		  <br>
+		  <button type="submit">Register</button>
 		</form>
+	  
+	  
+		<!-- Include the Firebase scripts and your JavaScript file here -->
+		<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+		<script src="registration.js"></script>
 
 		
 
@@ -40,31 +66,6 @@
 	<footer>
 		<p>&copy; 2023 smartHaul Ltd. All rights reserved.</p>
 	</footer>
-
-	<script>
-				// Import the functions you need from the SDKs you need
-		import { initializeApp } from "firebase/app";
-		import { getAnalytics } from "firebase/analytics";
-		// TODO: Add SDKs for Firebase products that you want to use
-		// https://firebase.google.com/docs/web/setup#available-libraries
-
-		// Your web app's Firebase configuration
-		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-		const firebaseConfig = {
-		apiKey: "AIzaSyDWBWCxhPblj61V0EcWl-hvQEGvG3f5UJM",
-		authDomain: "smarthaul-7c251.firebaseapp.com",
-		databaseURL: "https://smarthaul-7c251-default-rtdb.europe-west1.firebasedatabase.app",
-		projectId: "smarthaul-7c251",
-		storageBucket: "smarthaul-7c251.appspot.com",
-		messagingSenderId: "489108636040",
-		appId: "1:489108636040:web:d69d8fa541258c5cf7ba3d",
-		measurementId: "G-SJYMCCZ2RN"
-};
-
-		// Initialize Firebase
-		const app = initializeApp(firebaseConfig);
-		const analytics = getAnalytics(app);
-			</script>
 </body>
 </html>
 

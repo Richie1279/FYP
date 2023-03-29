@@ -16,19 +16,33 @@ const firebaseConfig = {
   // Get a reference to the Firebase Authentication service
   const auth = firebase.auth();
   
- // Function to create a new user with email and password
-function registerUser(email, password) {
-    auth.createUserWithEmailAndPassword(email, password)
+  // Function to sign in an existing user with email and password
+  function loginUser(email, password) {
+    auth.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        console.log('User registered:', userCredential.user);
-        alert('User registered successfully');
+        console.log('User logged in:', userCredential.user);
+        alert('User logged in successfully');
       })
       .catch((error) => {
-        console.error('Registration failed:', error);
-        alert('Registration failed: ' + error.message);
+        console.error('Login failed:', error);
+        alert('Login failed: ' + error.message);
       });
   }
-  
+
+  // Function to sign out the current user
+  function logoutUser() {
+    auth.signOut()
+      .then(() => {
+        console.log('User signed out');
+        alert('User signed out successfully');
+      })
+      .catch((error) => {
+        console.error('Logout failed:', error);
+        alert('Logout failed: ' + error.message);
+      });
+  }
+
+    
   // Listener to track user's authentication state
   auth.onAuthStateChanged((user) => {
     if (user) {
@@ -37,18 +51,12 @@ function registerUser(email, password) {
       console.log('No user is signed in.');
     }
   });
-  
-  // Get form elements
-  const registerForm = document.getElementById('registerForm');
- 
-  const logoutButton = document.getElementById('logoutButton');
-  
-  // Add event listeners
-  registerForm.addEventListener('submit', (event) => {
+
+  const loginForm = document.getElementById('loginForm');
+   
+  loginForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    const email = event.target.registerEmail.value;
-    const password = event.target.registerPassword.value;
-    registerUser(email, password);
+    const email = event.target.loginEmail.value;
+    const password = event.target.loginPassword.value;
+    loginUser(email, password);
   });
- 
-  
