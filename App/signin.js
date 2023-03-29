@@ -16,18 +16,22 @@ const firebaseConfig = {
   // Get a reference to the Firebase Authentication service
   const auth = firebase.auth();
   
-  // Function to sign in an existing user with email and password
-  function loginUser(email, password) {
-    auth.signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        console.log('User logged in:', userCredential.user);
-        alert('User logged in successfully');
-      })
-      .catch((error) => {
-        console.error('Login failed:', error);
-        alert('Login failed: ' + error.message);
-      });
-  }
+ // Function to sign in an existing user with email and password
+function loginUser(email, password) {
+  auth.signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      console.log('User logged in:', userCredential.user);
+      alert('User logged in successfully');
+
+      // Redirect the user to the map page
+      window.location.href = "map.html";
+    })
+    .catch((error) => {
+      console.error('Login failed:', error);
+      alert('Login failed: ' + error.message);
+    });
+}
+
 
   // Function to sign out the current user
   function logoutUser() {
