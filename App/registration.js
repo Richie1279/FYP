@@ -42,6 +42,12 @@ function registerUser(email, password) {
   const registerForm = document.getElementById('registerForm');
  
   const logoutButton = document.getElementById('logoutButton');
+
+  const returnToHomepageBtn = document.getElementById("returnToHomepage");
+
+returnToHomepageBtn.addEventListener("click", () => {
+  window.location.href = "Homepage.html";
+});
   
   // Add event listeners
   registerForm.addEventListener('submit', (event) => {

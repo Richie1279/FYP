@@ -1,44 +1,60 @@
-import { auth, db } from "./firebase-init.js";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-
-const signUpForm = document.getElementById("sign-up-form");
-const signInForm = document.getElementById("sign-in-form");
-const userInfo = document.getElementById("user-info");
-
-// Sign up event listener
-signUpForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const email = signUpForm["sign-up-email"].value;
-  const password = signUpForm["sign-up-password"].value;
-
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    console.log("User signed up successfully:", userCredential.user);
-  } catch (error) {
-    console.error("Error signing up:", error);
+// Replace the firebaseConfig object with the one from your Firebase project settings
+const firebaseConfig = {
+    apiKey: "AIzaSyDWBWCxhPblj61V0EcWl-hvQEGvG3f5UJM",
+    authDomain: "smarthaul-7c251.firebaseapp.com",
+    databaseURL: "https://smarthaul-7c251-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "smarthaul-7c251",
+    storageBucket: "smarthaul-7c251.appspot.com",
+    messagingSenderId: "489108636040",
+    appId: "1:489108636040:web:d69d8fa541258c5cf7ba3d",
+    measurementId: "G-SJYMCCZ2RN"
+  };
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+  // Get a reference to the Firebase Authentication service
+  const auth = firebase.auth();
+  
+ // Function to create a new user with email and password
+function registerUser(email, password) {
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        console.log('User registered:', userCredential.user);
+        alert('User registered successfully');
+      })
+      .catch((error) => {
+        console.error('Registration failed:', error);
+        alert('Registration failed: ' + error.message);
+      });
   }
-});
-
-// Sign in event listener
-signInForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const email = signInForm["sign-in-email"].value;
-  const password = signInForm["sign-in-password"].value;
-
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    console.log("User signed in successfully:", userCredential.user);
-  } catch (error) {
-    console.error("Error signing in:", error);
-  }
-});
-
-// Display user information when a user is authenticated
-onAuthStateChanged(auth, (user) => {
+  
+  // Listener to track user's authentication state
+  auth.onAuthStateChanged((user) => {
     if (user) {
-      userInfo.innerHTML = `Signed in as: ${user.email}`;
+      console.log('User is signed in:', user);
     } else {
-      userInfo.innerHTML = "No user is signed in";
+      console.log('No user is signed in.');
     }
   });
+  
+  // Get form elements
+  const registerForm = document.getElementById('registerForm');
+ 
+  const logoutButton = document.getElementById('logoutButton');
+
+  const returnToHomepageBtn = document.getElementById("returnToHomepage");
+
+returnToHomepageBtn.addEventListener("click", () => {
+  window.location.href = "Homepage.html";
+});
+  
+  // Add event listeners
+  registerForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const email = event.target.registerEmail.value;
+    const password = event.target.registerPassword.value;
+    registerUser(email, password);
+  });
+ 
   
