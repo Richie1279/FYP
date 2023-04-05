@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<title>Map</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css" type="text/css">
+<div id="map"></div>
+<div style="position: absolute; top: 10px; right: 10px; z-index: 1;">
+  <button id="saveJourney">Save Journey</button>
+</div>
+
+<script>
+  let currentRouteData = null;
+
+  mapboxgl.accessToken = 'pk.eyJ1IjoicmljaGllMTciLCJhIjoiY2xlZTkxaHAzMGVxdzNwcDJ2bGtveXl5bSJ9.UYP-FWayYyPgyggSwtTpVQ';
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v12',
+    center: [-9.05886,53.27998],
+    zoom: 13
+  });
+
+  const directions = new MapboxDirections({ accessToken: mapboxgl.accessToken, unit: 'metric' });
+  map.addControl(directions, 'top-left');
+
+  directions.on('route', function (event) {
+  console.log('Route event:', event); // Keep this line to log the event data
+
+  if (event.route && event.route.length > 0) {
+    const routes = event.route[0];
+    const distance = routes.distance / 1000; // Convert meters to kilometers
+    const duration = routes.duration / 3600; // Convert seconds to hours
+
+    const startLocation = routes.legs[0].steps[0].maneuver.location;
+    const endLocation = routes.legs[0].steps.slice(-1)[0].location;
+
+    // Update the currentRouteData variable
+    currentRouteData = {
+      start: startLocation,
+      destination: endLocation,
+      distance: distance,
+      duration: duration,
+    };
+  }
+});
+
+
+document.getElementById('saveJourney').addEventListener('click', function () {
+  if (currentRouteData) {
+    saveJourney(currentRouteData);
+  } else {
+    console.error("No route data available.");
+  }
+});
+
+
+  
+</script>
+<script src="map.js"></script>
+</body>
+</html>
